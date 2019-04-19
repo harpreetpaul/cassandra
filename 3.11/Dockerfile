@@ -22,6 +22,10 @@ RUN set -ex; \
 	fi; \
 	rm -rf /var/lib/apt/lists/*
 
+# added following to fix gpg error. Solution reference
+# https://github.com/inversepath/usbarmory-debian-base_image/issues/9
+RUN mkdir ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
+
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.10
 RUN set -x \
